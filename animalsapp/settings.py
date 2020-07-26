@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'animals_api',
     'animal',
     'djoser',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
