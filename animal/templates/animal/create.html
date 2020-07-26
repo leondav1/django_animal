@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Create
+{% endblock %}
+
+{% block style %}
+    h1 {
+            font-size: 20px
+        }
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.errors %}
+                {{ field.errors }}
+            {% endif %}
+            <p>{{ field.label }}
+            {{ field }}</p>
+        {% endfor %}
+        <a href="{% url 'animals-list' %}">Back</a>
+        <button type="submit">Create animal</button>
+    </form>
+{% endblock %}

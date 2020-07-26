@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ data.nickname }}
+{% endblock %}
+
+{% block style %}
+    h1 {
+            font-size: 20px
+        }
+{% endblock %}
+
+{% block header %}
+    Вы уверены, что хотите удалить животного по кличке <b>{{ data.nickname }}</b>?
+{% endblock %}
+
+{% block content %}
+        <form action="{% url 'animal-detail-list-delete' data.id %}" method="post">
+        {% csrf_token %}
+            <a href="{% url 'animal-detail-list' data.id %}">Cancel</a>
+        <button type="submit">Delete animal</button>
+    </form>
+{% endblock %}

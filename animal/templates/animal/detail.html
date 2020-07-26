@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ data.nickname }}
+{% endblock %}
+
+{% block style %}
+    h1 {
+            font-size: 20px
+        }
+{% endblock %}
+
+{% block header %}
+    Описание животного по кличке {{ data.nickname }}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <p>Кличка: {{data.nickname}}</p>
+        <p>Возраст: {{data.age}}</p>
+        <p>Дата прибытия в приют: {{data.arrival_date}}</p>
+        <p>Вес: {{data.weight}}</p>
+        <p>Рост: {{data.growth}}</p>
+        <p>Особые приметы: {{data.special_signs}}</p>
+    </div>
+    <div>
+        <a href="{% url 'animals-list' %}">Back</a>
+        {% if perms.animals_api.change_animal %}
+        <a href="{% url 'animal-detail-list-update' data.id %}">Edit animal</a>
+        {% endif %}
+        {% if perms.animals_api.delete_animal %}
+        <a href="{% url 'animal-detail-list-delete' data.id %}">Delete animal</a>
+        {% endif %}
+    </div>
+{% endblock %}

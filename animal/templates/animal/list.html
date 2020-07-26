@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Список животных
+{% endblock %}
+
+{% block style %}
+    h1 {
+            font-size: 20px
+        }
+{% endblock %}
+
+{% block header %}
+    Список животных
+{% endblock %}
+
+{% block content %}
+    {% if not data.detail %}
+        {% if data %}
+        <ul>
+            {% for item in data %}
+            <li><a href="{% url 'animal-detail-list' item.id %}">{{ item.nickname }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Список животных пуст</p>
+        {% endif %}
+        {% if perms.animals_api.add_animal %}
+        <div>
+            <a href="{% url 'create' %}">Create new animal</a>
+        </div>
+        {% endif %}
+    {% else %}
+        <p>{{ data.detail }}</p>
+    {% endif %}
+{% endblock %}

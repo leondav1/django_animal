@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Edit
+{% endblock %}
+
+{% block style %}
+    h1 {
+            font-size: 20px
+        }
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'animal-detail-list-update' id %}" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.errors %}
+                {{ field.errors }}
+            {% endif %}
+            <p>{{ field.label }}
+            {{ field }}</p>
+        {% endfor %}
+        <a href="{% url 'animal-detail-list' id %}">Back</a>
+        <button type="submit">Update animal</button>
+    </form>
+{% endblock %}
