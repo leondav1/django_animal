@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from softdelete.models import SoftDeleteObject
 
 User = get_user_model()
 
 
-class Animal(models.Model):
+class Animal(SoftDeleteObject, models.Model):
     created = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
     nickname = models.CharField(verbose_name="Кличка", max_length=120)
     age = models.IntegerField(verbose_name="Возраст")
